@@ -690,6 +690,41 @@ class FlutterJPush {
    */
   static Future<void> sendLocalNotification(
       JPushNotification notification) async {
+    Map extra;
+    String title = notification.title ?? "";
+    String content = notification.content ?? "";
+    String subtitle = notification.subtitle ?? "";
+    int badge = notification.badge ?? -1;
+    String sound = notification.sound ?? "";
+    if (Platform.isIOS) {
+      Map alert = {
+        "title": title,
+        "body": content,
+        "subtitle": subtitle,
+      };
+
+      extra = {
+        "aps": {
+          "alert": alert,
+          "badge": badge,
+          "sound": sound,
+        },
+      };
+      extra.addAll(notification.extras);
+    }
+
+    Map params = {
+      "id": notification.id,
+      "title": title,
+      "subtitle": subtitle,
+      "content": content,
+      "badge": badge,
+      // "action": notification.alertType,
+      "extra": extra,
+      "sound": sound,
+      "fireTime": notification.fireTime?.millisecondsSinceEpoch + 0.0,
+    };
+
     await _channel.invokeMethod("sendLocalNotification", notification);
   }
 
