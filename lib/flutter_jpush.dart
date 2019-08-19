@@ -725,7 +725,7 @@ class FlutterJPush {
       "fireTime": notification.fireTime?.millisecondsSinceEpoch + 0.0,
     };
 
-    await _channel.invokeMethod("sendLocalNotification", notification);
+    await _channel.invokeMethod("sendLocalNotification", params);
   }
 
   /**
