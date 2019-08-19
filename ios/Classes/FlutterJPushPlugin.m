@@ -732,7 +732,7 @@
             NSNumber *date = params[@"fireTime"];
             NSTimeInterval currentInterval = [[NSDate date] timeIntervalSince1970];
             NSTimeInterval interval = [date doubleValue]/1000 - currentInterval;
-            interval = interval>0?interval:0;
+            interval = interval>0?interval:0.001;
             trigger.timeInterval = interval;
         }
     }
