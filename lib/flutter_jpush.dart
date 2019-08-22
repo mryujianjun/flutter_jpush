@@ -714,6 +714,7 @@ class FlutterJPush {
     }
 
     Map params = {
+      "buildId": notification.buildId ?? 1,
       "id": notification.id,
       "title": title,
       "subtitle": subtitle,
