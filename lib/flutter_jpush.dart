@@ -710,8 +710,10 @@ class FlutterJPush {
           "sound": sound,
         },
       };
-      extra.addAll(notification.extras);
+    } else if(Platform.isAndroid) {
+
     }
+    extra.addAll(notification.extras);
 
     Map params = {
       "buildId": notification.buildId ?? 1,
